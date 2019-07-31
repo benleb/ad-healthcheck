@@ -6,7 +6,7 @@
 
 ## Installation
 
-Use [HACS](https://github.com/bcustom-components/hacs) or [download](https://github.com/benleb/ad-healthcheck/releases) the `healthcheck` directory from inside the `apps` directory here to your local `apps` directory, then add the configuration to enable the `healthcheck` module.
+Use [HACS](https://github.com/custom-components/hacs) or [download](https://github.com/benleb/ad-healthcheck/releases) the `healthcheck` directory from inside the `apps` directory here to your local `apps` directory, then add the configuration to enable the `healthcheck` module.
 
 ## App configuration
 
