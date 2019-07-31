@@ -11,7 +11,7 @@ Download the `healthcheck` directory from inside the `apps` directory here to yo
 ## App configuration
 
 ```yaml
-hacs:
+healthcheck:
   module: healthcheck
   class: Healthcheck
   endpoint: healthcheck

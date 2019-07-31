@@ -1,7 +1,7 @@
 ## App configuration
 
 ```yaml
-hacs:
+healthcheck:
   module: healthcheck
   class: Healthcheck
   endpoint: healthcheck
