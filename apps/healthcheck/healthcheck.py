@@ -8,9 +8,9 @@ healthcheck:
   endpoint: healthcheck
 """
 
-from pprint import pformat
-
 import appdaemon.plugins.hass.hassapi as hass
+
+import adutils
 
 APP_NAME = "healthcheck"
 APP_ICON = "🏥"
@@ -21,12 +21,16 @@ class Healthcheck(hass.Hass):
 
     def initialize(self):
         """Register API endpoint."""
-        self.config = dict()
-        self.config["endpoint"] = str(self.args.get("endpoint", APP_NAME))
-        self.register_endpoint(self.healthcheck, self.config["endpoint"])
+        self.cfg = dict()
+        self.cfg["endpoint"] = str(self.args.get("endpoint", APP_NAME))
 
-        self.log(f"{APP_ICON} {APP_NAME}: {pformat(self.config)}", ascii_encode=False)
+        # register api endpoint
+        self.register_endpoint(self.healthcheck, self.cfg["endpoint"])
+
+        # output app configuration
+        adutils.show_info(self.log, APP_NAME, self.cfg, list(), icon=APP_ICON)
 
     def healthcheck(self, _):
         """Handle incoming requests."""
-        return dict(appdaemon=self.get_ad_version(), app=APP_NAME), 200
+        modules = list(set([self.app_config[app]["module"] for app in self.app_config]))
+        return dict(appdaemon=self.get_ad_version(), modules=modules), 200
