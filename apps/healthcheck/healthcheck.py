@@ -14,7 +14,7 @@ import appdaemon.plugins.hass.hassapi as hass
 
 import adutils
 
-APP_NAME = "healthcheck"
+APP_NAME = "Healthcheck"
 APP_ICON = "🏥"
 
 
