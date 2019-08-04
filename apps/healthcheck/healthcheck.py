@@ -8,6 +8,8 @@ healthcheck:
   endpoint: healthcheck
 """
 
+from typing import Any, Dict, Tuple
+
 import appdaemon.plugins.hass.hassapi as hass
 
 import adutils
@@ -16,12 +18,12 @@ APP_NAME = "healthcheck"
 APP_ICON = "🏥"
 
 
-class Healthcheck(hass.Hass):
+class Healthcheck(hass.Hass):  # type: ignore
     """Healthcheck."""
 
-    def initialize(self):
+    def initialize(self) -> None:
         """Register API endpoint."""
-        self.cfg = dict()
+        self.cfg: Dict[str, str] = dict()
         self.cfg["endpoint"] = str(self.args.get("endpoint", APP_NAME))
 
         # register api endpoint
@@ -30,7 +32,7 @@ class Healthcheck(hass.Hass):
         # output app configuration
         adutils.show_info(self.log, APP_NAME, self.cfg, list(), icon=APP_ICON)
 
-    def healthcheck(self, _):
+    def healthcheck(self, _: Any) -> Tuple[Dict[str, Any], int]:
         """Handle incoming requests."""
         modules = list(set([self.app_config[app]["module"] for app in self.app_config]))
         return dict(appdaemon=self.get_ad_version(), modules=modules), 200
