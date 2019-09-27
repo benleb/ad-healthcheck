@@ -16,6 +16,7 @@ import adutils
 
 APP_NAME = "Healthcheck"
 APP_ICON = "🏥"
+APP_VERSION = "0.2.1"
 
 
 class Healthcheck(hass.Hass):  # type: ignore
