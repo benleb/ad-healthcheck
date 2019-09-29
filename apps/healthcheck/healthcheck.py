@@ -12,7 +12,7 @@ from typing import Any, Dict, Tuple
 
 import appdaemon.plugins.hass.hassapi as hass
 
-import adutils
+from adutils import ADutils
 
 APP_NAME = "Healthcheck"
 APP_ICON = "🏥"
@@ -31,7 +31,8 @@ class Healthcheck(hass.Hass):  # type: ignore
         self.register_endpoint(self.healthcheck, self.cfg["endpoint"])
 
         # output app configuration
-        adutils.show_info(self.log, APP_NAME, self.cfg, list(), icon=APP_ICON, appdaemon_version=self.get_ad_version())
+        self.adu = ADutils(APP_NAME, self.cfg, icon=APP_ICON, ad=self)
+        self.adu.show_info()
 
     def healthcheck(self, _: Any) -> Tuple[Dict[str, Any], int]:
         """Handle incoming requests."""
