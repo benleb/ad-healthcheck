@@ -15,7 +15,7 @@ import hassapi as hass
 
 APP_NAME = "Healthcheck"
 APP_ICON = "🏥"
-APP_VERSION = "0.4.3"
+APP_VERSION = "0.4.4"
 
 
 class Healthcheck(hass.Hass):  # type: ignore
