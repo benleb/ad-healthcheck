@@ -1,6 +1,6 @@
 """AppDaemon healthcheck.
 
-  @benleb / https://github.com/benleb/appdaemon-healthcheck
+  @benleb / https://github.com/benleb/ad-healthcheck
 
 healthcheck:
   module: healthcheck
@@ -21,13 +21,13 @@ APP_VERSION = "0.4.3"
 class Healthcheck(hass.Hass):  # type: ignore
     """Healthcheck."""
 
-    def initialize(self) -> None:
+    async def initialize(self) -> None:
         """Register API endpoint."""
         self.cfg: Dict[str, Any] = dict()
         self.cfg["endpoint"] = str(self.args.get("endpoint", APP_NAME))
 
         # register api endpoint
-        self.register_endpoint(self.healthcheck, self.cfg["endpoint"])
+        await self.register_endpoint(self.healthcheck, self.cfg["endpoint"])
 
         # set prefix
         self.cfg.setdefault("_prefixes", dict(endpoint="/"))
