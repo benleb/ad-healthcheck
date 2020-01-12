@@ -10,7 +10,7 @@ healthcheck:
 
 from typing import Any, Dict, Tuple
 
-import adutils
+from adutils import ADutils
 import hassapi as hass
 
 APP_NAME = "Healthcheck"
@@ -32,12 +32,10 @@ class Healthcheck(hass.Hass):  # type: ignore
         # set prefix
         self.cfg.setdefault("_prefixes", dict(endpoint="/"))
 
-        # init adutils
-        self.adu = adutils.ADutils(
-            APP_NAME, self.cfg, icon=APP_ICON, ad=self, show_config=True
-        )
+        # show active config / init adutils
+        ADutils(APP_NAME, self.cfg, icon=APP_ICON, ad=self, show_config=True)
 
-    def healthcheck(self, _: Any) -> Tuple[Dict[str, Any], int]:
+    async def healthcheck(self, _: Any) -> Tuple[Dict[str, Any], int]:
         """Handle incoming requests."""
         modules = list(set([self.app_config[app]["module"] for app in self.app_config]))
         return dict(appdaemon=self.get_ad_version(), modules=modules), 200
