@@ -1,6 +1,6 @@
 # healthcheck
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
 *Simple [AppDaemon](https://github.com/home-assistant/appdaemon) healthcheck app. Can be used as a docker-compose healthcheck.*
 
